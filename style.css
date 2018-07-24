@@ -1,0 +1,11 @@
+#map {
+        height: 550px;
+        width: 65%;
+      }
+
+#logo{
+	width: 20%;
+	position: relative;
+	justify-content: center;
+}
+
