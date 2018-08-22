@@ -42,6 +42,7 @@ var station = {
     statut: "",
     nbPlaces: "",
     nbVelo: "",
+    emplacementDonnees : document.getElementById("listeInfo").querySelectorAll("span"),
 
 
     recupAllStations: function(allStations) {
@@ -49,8 +50,15 @@ var station = {
         this.adresse = allStations.address;
         this.statut = allStations.status;
         this.nbPlaces = allStations.available_bike_stands;
-        this.nbVelo = allStations.available_bikes;
+        this.nbVelos = allStations.available_bikes;
 
+    },
+
+    DonneesStation : function() {
+        document.getElementById("nomStation").innerHTML = this.nom;
+        document.getElementById("statutStation").innerHTML = this.statut;
+        document.getElementById("veloDispo").innerHTML = this.nbVelos;
+        document.getElementById("placeDispo").innerHTML = this.nbPlaces;
     }
 
 };
@@ -62,6 +70,12 @@ stationsList.forEach(function(returnStations) {
 	gmap.initMarker(returnStations.position);
 
 	gmap.iconMarker(returnStations.available_bikes);
+
+    google.maps.event.addListener(marker, "click", function() {
+        station.recupAllStations(returnStations);
+        station.DonneesStation();
+    });
+
 
 });
 
